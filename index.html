@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link rel="stylesheet" href="index.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paralax</title>
+
+</head>
+<body>
+   <div class="parallax">
+        <section class="hero">
+
+            <button class="decollage-button" id="scrollToBottomBtn" onclick="scrollToBottom()">Decollage!</button>
+
+        </section>
+
+        <div class="rocket">
+            <img src="rocket.svg" alt="">
+        </div>
+
+        <img class="moon" src="image-moon.png">
+        <img class="europa" src="image-europa.png" alt="">
+    </div>
+
+</body>
+<script>
+    // Function to scroll to the bottom of the page
+    function scrollToBottom() {
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            
+        });
+    }
+</script>
+</html>

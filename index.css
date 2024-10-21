@@ -1,0 +1,204 @@
+:root {
+  /* colors */
+  --clr-dark: 230 35% 7%;
+  --clr-light: 231 77% 90%;
+  --clr-white: 0 0% 100%;
+}
+
+/* ------------------- */
+/* Reset               */
+/* ------------------- */
+
+/* https://piccalil.li/blog/a-modern-css-reset/ */
+
+/* Box sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Reset margins */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+figure,
+picture {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-weight: 400;
+}
+
+/* set up the body */
+body {
+  font-family: var(--ff-sans-normal);
+  font-size: var(--fs-400);
+  color: hsl(var(--clr-white));
+  background-color: hsl(var(--clr-dark));
+  background-image: url("etoales.svg");
+  line-height: 1.5;
+  min-height: 800vh;
+  height: fit-content;
+
+  display: grid;
+  grid-template-rows: min-content 1fr;
+}
+
+/* make images easier to work with */
+img,
+picutre {
+  max-width: 100%;
+  display: block;
+}
+
+/* make form elements easier to work with */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* ------------------- */
+/* Utility classes     */
+/* ------------------- */
+
+/* general */
+
+.flex {
+  display: flex;
+  gap: var(--gap, 1rem);
+}
+
+.grid {
+  display: grid;
+  gap: var(--gap, 1rem);
+}
+
+.d-block {
+  display: block;
+}
+
+.flow > *:where(:not(:first-child)) {
+  margin-top: var(--flow-space, 1rem);
+  /*outline: 1px solid red;*/
+}
+
+.grid-container * {
+  max-width: 50ch;
+}
+
+/* ------------------- */
+/* Components          */
+/* ------------------- */
+@keyframes parallax {
+  to {
+    transform: translateY(-300vh);
+  }
+}
+@keyframes parallax-rocket {
+  to {
+    transform: translateY(850vh);
+  }
+}
+@keyframes parallax-moon {
+  to {
+    transform: translate(-50vw, 500vh);
+  }
+}
+
+@keyframes parallax-europa {
+  to {
+    transform: translateY(1500vh);
+    scale: 0.5;
+  }
+}
+
+.paralax {
+  background-color: antiquewhite;
+  display: grid;
+  top: 0;
+  position: relative;
+  align-items: center;
+  grid-template-areas: "stack";
+  animation: parallax-two linear;
+  animation-timeline: scroll();
+}
+.parallax > * {
+  grid-area: stack;
+}
+
+.hero {
+  height: 100vh;
+  background-color: hsl(var(--clr-dark) / 0.9);
+  background-repeat: no-repeat;
+  display: grid;
+  place-items: center;
+  border: 1px solid hsl(var(--clr-white) / 0.5);
+
+  animation: parallax linear;
+  animation-timeline: scroll();
+}
+
+.decollage-button {
+  padding: 2em;
+  border: 1px solid hsl(var(--clr-white) / 0.25);
+  border-radius: 50%;
+  background-color: hsl(var(--clr-dark) / 0.8);
+  aspect-ratio: 1;
+  color: aliceblue;
+  font-size: 50px;
+  z-index: 300;
+  cursor: pointer;
+  transition: box-shadow 0.5s ease;
+}
+
+.decollage-button:hover {
+  border-color: hsl(var(--clr-white));
+  box-shadow: 0 0 0 2em hsl(var(--clr-white) / 0.25);
+}
+
+.rocket {
+  position: absolute;
+  width: 20vw;
+
+  top: -30vh;
+  margin-inline: 45vw;
+  margin-bottom: 0;
+  z-index: 0;
+  animation: parallax-rocket cubic-bezier(0.49, 0.7, 1, 0.75);
+  animation-timeline: scroll();
+}
+
+.moon {
+  position: absolute;
+  top: 50vh;
+  left: 8vw;
+  z-index: -1;
+  animation: parallax-moon linear;
+  animation-timeline: scroll();
+  filter: brightness(110%);
+}
+
+.europa {
+  position: absolute;
+  top: 50vh;
+  right: 5svh;
+  scale: 0.33;
+  z-index: -2;
+  animation: parallax-europa linear;
+  animation-timeline: scroll();
+  filter: brightness(50%);
+}
